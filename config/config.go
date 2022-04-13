@@ -46,8 +46,8 @@ func (c *Config) Use(key string) *Config {
 	}
 }
 
-// GetInt 获取int值
-func (c *Config) GetInt(key string, defaultValue int) int {
+// MustInt 获取int值
+func (c *Config) MustInt(key string, defaultValue int) int {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -59,8 +59,8 @@ func (c *Config) GetInt(key string, defaultValue int) int {
 	return value
 }
 
-// GetInt8 获取int8值
-func (c *Config) GetInt8(key string, defaultValue int8) int8 {
+// MustInt8 获取int8值
+func (c *Config) MustInt8(key string, defaultValue int8) int8 {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -72,8 +72,8 @@ func (c *Config) GetInt8(key string, defaultValue int8) int8 {
 	return value
 }
 
-// GetInt16 获取int16值
-func (c *Config) GetInt16(key string, defaultValue int16) int16 {
+// MustInt16 获取int16值
+func (c *Config) MustInt16(key string, defaultValue int16) int16 {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -85,8 +85,8 @@ func (c *Config) GetInt16(key string, defaultValue int16) int16 {
 	return value
 }
 
-// GetInt64 获取int64值
-func (c *Config) GetInt64(key string, defaultValue int64) int64 {
+// MustInt64 获取int64值
+func (c *Config) MustInt64(key string, defaultValue int64) int64 {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -98,8 +98,8 @@ func (c *Config) GetInt64(key string, defaultValue int64) int64 {
 	return value
 }
 
-// GetUint 获取uint值
-func (c *Config) GetUint(key string, defaultValue uint) uint {
+// MustUint 获取uint值
+func (c *Config) MustUint(key string, defaultValue uint) uint {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -111,8 +111,8 @@ func (c *Config) GetUint(key string, defaultValue uint) uint {
 	return value
 }
 
-// GetUint8 获取uint8值
-func (c *Config) GetUint8(key string, defaultValue uint8) uint8 {
+// MustUint8 获取uint8值
+func (c *Config) MustUint8(key string, defaultValue uint8) uint8 {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -124,8 +124,8 @@ func (c *Config) GetUint8(key string, defaultValue uint8) uint8 {
 	return value
 }
 
-// GetUint16 获取uint16值
-func (c *Config) GetUint16(key string, defaultValue uint16) uint16 {
+// MustUint16 获取uint16值
+func (c *Config) MustUint16(key string, defaultValue uint16) uint16 {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -137,8 +137,8 @@ func (c *Config) GetUint16(key string, defaultValue uint16) uint16 {
 	return value
 }
 
-// GetUint32 获取uint32值
-func (c *Config) GetUint32(key string, defaultValue uint32) uint32 {
+// MustUint32 获取uint32值
+func (c *Config) MustUint32(key string, defaultValue uint32) uint32 {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -163,8 +163,8 @@ func (c *Config) GetUint64(key string, defaultValue uint64) uint64 {
 	return value
 }
 
-// GetFloat32 获取float32值
-func (c *Config) GetFloat32(key string, defaultValue float32) float32 {
+// MustFloat32 获取float32值
+func (c *Config) MustFloat32(key string, defaultValue float32) float32 {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -176,8 +176,8 @@ func (c *Config) GetFloat32(key string, defaultValue float32) float32 {
 	return value
 }
 
-// GetFloat64 获取float64值
-func (c *Config) GetFloat64(key string, defaultValue float64) float64 {
+// MustFloat64 获取float64值
+func (c *Config) MustFloat64(key string, defaultValue float64) float64 {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -189,8 +189,8 @@ func (c *Config) GetFloat64(key string, defaultValue float64) float64 {
 	return value
 }
 
-// GetString 获取string值
-func (c *Config) GetString(key string, defaultValue string) string {
+// MustString 获取string值
+func (c *Config) MustString(key string, defaultValue string) string {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
@@ -202,8 +202,8 @@ func (c *Config) GetString(key string, defaultValue string) string {
 	return value
 }
 
-// GetBool 获取bool值
-func (c *Config) GetBool(key string, defaultValue bool) bool {
+// MustBool 获取bool值
+func (c *Config) MustBool(key string, defaultValue bool) bool {
 	val := c.Get(key)
 	if val == nil {
 		return defaultValue
