@@ -1,0 +1,7 @@
+info:
+#  name: "lucien"
+  school:
+    schoolName: "xupt"
+    departmentName: "CS"
+  age: 21
+  isMarried: false
