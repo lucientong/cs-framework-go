@@ -5,3 +5,12 @@ info:
     departmentName: "CS"
   age: 21
   isMarried: false
+
+db:
+  default:
+    driver: "mysql"
+    host: "9.135.220.131"
+    port: 3306
+    database: "lucien_test_db"
+    username: "root"
+    password: "tyz619813095"
