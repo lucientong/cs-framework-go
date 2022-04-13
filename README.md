@@ -51,6 +51,3 @@ func TestConfig(t *testing.T) {
 }
 
 ```
-
-输出：
-![](https://github.com/lucientong/cs-framework-go/tree/lucientong/documents/16498665310696.jpg)
