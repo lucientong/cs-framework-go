@@ -53,4 +53,4 @@ func TestConfig(t *testing.T) {
 ```
 
 输出：
-![](documents/16498665310696.jpg)
+![](./documents/16498665310696.jpg)
