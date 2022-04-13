@@ -5,6 +5,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/cast"
 	"github.com/spf13/viper"
+	"time"
 )
 
 var vipers *Config
@@ -209,6 +210,19 @@ func (c *Config) MustBool(key string, defaultValue bool) bool {
 		return defaultValue
 	}
 	value, err := cast.ToBoolE(val)
+	if err != nil {
+		return defaultValue
+	}
+	return value
+}
+
+// MustDuration 获取Duration值
+func (c *Config) MustDuration(key string, defaultValue time.Duration) time.Duration {
+	val := c.Get(key)
+	if val == nil {
+		return defaultValue
+	}
+	value, err := cast.ToDurationE(val)
 	if err != nil {
 		return defaultValue
 	}

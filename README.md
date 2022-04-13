@@ -51,3 +51,65 @@ func TestConfig(t *testing.T) {
 }
 
 ```
+
+## ORM
+基于[gorm](https://github.com/go-gorm/gorm)实现，默认读取conf目录下的config.yaml文件中db项配置。
+
+- 如何使用？
+
+1. 首先需要在配置文件中配置数据库信息（db项）
+config.yaml
+```yaml
+info:
+#  name: "lucien"
+  school:
+    schoolName: "xupt"
+    departmentName: "CS"
+  age: 21
+  isMarried: false
+
+db:
+  default:
+    driver: "mysql"
+    host: "127.0.0.1"
+    port: 3306
+    database: "lucien_test_db"
+    username: "root"
+    password: "password"
+```
+2. 根据不同的表配置不同的结构体，增删改查与gorm相同
+orm_test.go
+```go
+package test
+
+import (
+	"cs/config"
+	"cs/db"
+	"testing"
+)
+
+type DedaoUserData struct {
+	Id        int    `gorm:"id" json:"id"`
+	Name      string `gorm:"name" json:"name"`
+	Frequency int    `gorm:"frequency" json:"frequency"`
+}
+
+func (d *DedaoUserData) TableName() string {
+	return "dedao_user_data"
+}
+
+func TestGorm(t *testing.T) {
+	config.AddConfigPath("../conf")
+	config.SetConfigType("yaml")
+	config.SetConfigName("config")
+
+	config.Init()
+
+	data := DedaoUserData{}
+	db.Default().First(&data)
+	t.Log(data)
+}
+
+```
+
+
