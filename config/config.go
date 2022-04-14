@@ -229,6 +229,16 @@ func (c *Config) MustDuration(key string, defaultValue time.Duration) time.Durat
 	return value
 }
 
+// OnConfigChange 配置更改回调
+type OnConfigChange func(name string, op uint32)
+
+var configChangeFuncList []OnConfigChange
+
+// RegisterConfigChangedFunc 注册配置变更回调函数
+func RegisterConfigChangedFunc(f OnConfigChange) {
+	configChangeFuncList = append(configChangeFuncList, f)
+}
+
 // Init 初始化
 func Init() {
 	vipers = &Config{
@@ -243,7 +253,9 @@ func Init() {
 		panic(fmt.Errorf("Fatal error config file: %w \n", err))
 	}
 	vipers.OnConfigChange(func(e fsnotify.Event) {
-		fmt.Println("Config file changed:", e.Name)
+		for _, f := range configChangeFuncList {
+			f(e.Name, uint32(e.Op))
+		}
 	})
 	vipers.WatchConfig()
 }
