@@ -53,7 +53,15 @@ func TestConfig(t *testing.T) {
 ```
 
 ## ORM
-基于[gorm](https://github.com/go-gorm/gorm)实现，默认读取conf目录下的config.yaml文件中db项配置。
+基于[gorm](https://github.com/go-gorm/gorm)实现，默认读取conf目录下的config.yaml文件中db项配置。适配的数据库类型有：MySQL, PostgreSQL, SQlite, SQL Server，更改db下的driver既可更改驱动。
+```yaml
+db:
+  default:
+    driver: "mysql"  # MySQL
+    # driver: "postgres" # PostgreSQL
+    # driver: "sqlite"  # SQlite
+    # driver: "sqlserver"  # SQL Server
+```
 
 - 如何使用？
 
