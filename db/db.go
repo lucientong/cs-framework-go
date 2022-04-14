@@ -2,9 +2,13 @@ package db
 
 import (
 	"cs/config"
+	"cs/constants"
 	"errors"
 	"fmt"
 	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlite"
+	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 	"sync"
 	"time"
@@ -31,16 +35,17 @@ type dbConfig struct {
 	maxOpenConns    int
 	connMaxLifeTime time.Duration
 	charset         string
+	driver 			string
 }
 
 // Default 获取默认gorm实例
 func Default() *gorm.DB {
-	return Get("mysql", "default")
+	return Get(constants.MySQLDriver, "default")
 }
 
 // DefaultE 获取默认gorm实例，未获取到返回错误
 func DefaultE() (*gorm.DB, error) {
-	return GetE("mysql", "default")
+	return GetE(constants.MySQLDriver, "default")
 }
 
 // Get 获取gorm实例
@@ -90,7 +95,7 @@ func GetE(driver, dbConfigName string) (*gorm.DB, error) {
 	return db, err
 }
 
-// loadDbByConfig 根据配置文件价值数据库
+// loadDbByConfig 根据配置文件加载数据库
 func loadDbByConfig(driver, dbConfigName string) (*gorm.DB, error) {
 	dbConfigs := config.Use("db")
 	if dbConfigs == nil {
@@ -113,6 +118,7 @@ func loadDbByConfig(driver, dbConfigName string) (*gorm.DB, error) {
 		maxOpenConns:    dbConf.GetInt("maxOpenConns"),
 		connMaxLifeTime: dbConf.MustDuration("connMaxLifeTime", 1*time.Hour),
 		charset:         dbConf.MustString("charset", "utf8m64,utf8"),
+		driver: 		 driver,
 	})
 }
 
@@ -125,7 +131,21 @@ func load(conf dbConfig) (*gorm.DB, error) {
 		PrepareStmt:            true, // 缓存预编译语句
 		//Logger: todo
 	}
-	db, err := gorm.Open(mysql.Open(dsn), c)
+	var db *gorm.DB
+	var err error
+
+	switch conf.driver {
+	case constants.MySQLDriver:
+		db, err = gorm.Open(mysql.Open(dsn), c)
+	case constants.PostgreSQLDriver:
+		db, err = gorm.Open(postgres.Open(dsn), c)
+	case constants.SQLiteDriver:
+		db, err = gorm.Open(sqlite.Open(dsn), c)
+	case constants.SQLServerDriver:
+		db, err = gorm.Open(sqlserver.Open(dsn), c)
+	default:
+		db, err = gorm.Open(mysql.Open(dsn), c)
+	}
 	if err != nil {
 		// todo log
 		return nil, err
