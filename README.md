@@ -66,6 +66,7 @@ db:
 - 如何使用？
 
 1. 首先需要在配置文件中配置数据库信息（db项）
+
 config.yaml
 ```yaml
 info:
@@ -85,7 +86,9 @@ db:
     username: "root"
     password: "password"
 ```
-2. 根据不同的表配置不同的结构体，增删改查与gorm相同
+1. 根据不同的表配置不同的结构体，增删改查与gorm相同
+
+
 orm_test.go
 ```go
 package test
