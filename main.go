@@ -1,5 +1,0 @@
-package cs
-
-func main() {
-
-}
