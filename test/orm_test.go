@@ -3,6 +3,7 @@ package test
 import (
 	"cs/config"
 	"cs/db"
+	"cs/log"
 	"testing"
 )
 
@@ -22,6 +23,7 @@ func TestGorm(t *testing.T) {
 	config.SetConfigName("config")
 
 	config.Init()
+	log.Init()
 
 	data := DedaoUserData{}
 	db.Default().First(&data)

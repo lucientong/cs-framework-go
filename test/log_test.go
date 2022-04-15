@@ -2,15 +2,15 @@ package test
 
 import (
 	"cs/config"
-	"cs/logger"
+	"cs/log"
 	"testing"
 )
 
 func TestLog(t *testing.T) {
 	config.AddConfigPath("../conf")
 	config.Init()
-	logger.Init()
+	log.Init()
 
-	logger.Infof("start: %d", 123)
-	logger.Error("dddddd")
+	log.Infof("start: %d", 123)
+	log.Error("dddddd")
 }
