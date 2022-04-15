@@ -1,5 +1,5 @@
-// Package logger provides to users directly
-package logger
+// Package log provides to users directly
+package log
 
 import "go.uber.org/zap"
 
@@ -10,7 +10,7 @@ func Debug(msg string, fields ...zap.Field) {
 
 // Debugf printf格式日志
 func Debugf(template string, args ...interface{}) {
-	logger.ZapSugar.Debugf(template, args)
+	logger.ZapSugar.Debugf(template, args...)
 }
 
 // Info zap原生格式日志
@@ -20,7 +20,7 @@ func Info(msg string, fields ...zap.Field) {
 
 // Infof printf格式日志
 func Infof(template string, args ...interface{}) {
-	logger.ZapSugar.Infof(template, args)
+	logger.ZapSugar.Infof(template, args...)
 }
 
 // Warn zap原生格式日志
@@ -30,7 +30,7 @@ func Warn(msg string, fields ...zap.Field) {
 
 // Warnf printf格式日志
 func Warnf(template string, args ...interface{}) {
-	logger.ZapSugar.Warnf(template, args)
+	logger.ZapSugar.Warnf(template, args...)
 }
 
 // Error zap原生格式日志

@@ -1,4 +1,4 @@
-package logger
+package log
 
 import (
 	"cs/config"
@@ -61,7 +61,7 @@ func newZapCore(w io.Writer, atomicLevel *zap.AtomicLevel) zapcore.Core {
 	encoderConfig := zapcore.EncoderConfig{
 		LevelKey:       "level",
 		TimeKey:        "time",
-		NameKey:        "logger",
+		NameKey:        "log",
 		CallerKey:      "caller",
 		MessageKey:     "msg",
 		StacktraceKey:  "stacktrace",
